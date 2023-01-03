@@ -1,7 +1,18 @@
 # Flutter Game
 
+**WIP**
 
-## Getting Started 🚀
+Flutter Game works on iOS, Android, Web, macOS, Linux and Windows.
+
+- [Flutter Game](#flutter-game)
+  - [Getting Started](#getting-started)
+  - [Running Tests](#running-tests)
+  - [Working with Translations](#working-with-translations)
+    - [Adding Strings](#adding-strings)
+    - [Adding Supported Locales](#adding-supported-locales)
+    - [Adding Translations](#adding-translations)
+
+## Getting Started
 
 This project contains 3 flavors:
 
@@ -13,40 +24,34 @@ To run the desired flavor either use the launch configuration in VSCode/Android 
 
 ```sh
 # Development
-$ flutter run --flavor development --target lib/main_development.dart
+flutter run --flavor development --target lib/main_development.dart
 
 # Staging
-$ flutter run --flavor staging --target lib/main_staging.dart
+flutter run --flavor staging --target lib/main_staging.dart
 
 # Production
-$ flutter run --flavor production --target lib/main_production.dart
+flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Flutter Game works on iOS, Android, Web, macOS, Linux and Windows._
-
----
-
-## Running Tests 🧪
+## Running Tests
 
 To run all unit and widget tests use the following command:
 
 ```sh
-$ flutter test --coverage --test-randomize-ordering-seed random
+flutter test --coverage --test-randomize-ordering-seed random
 ```
 
 To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
 
 ```sh
 # Generate Coverage Report
-$ genhtml coverage/lcov.info -o coverage/
+genhtml coverage/lcov.info -o coverage/
 
 # Open Coverage Report
-$ open coverage/index.html
+open coverage/index.html
 ```
 
----
-
-## Working with Translations 🌐
+## Working with Translations
 
 This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
 
