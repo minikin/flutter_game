@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_game/game/entities/unicorn/behaviors/tapping_behavior.dart';
 import 'package:flutter_game/gen/assets.gen.dart';
 
-class Unicorn extends Entity with HasGameRef {
+class Unicorn extends PositionedEntity with HasGameRef {
+  SpriteAnimation? _animation;
+
   Unicorn({
     required super.position,
   }) : super(
@@ -21,10 +23,10 @@ class Unicorn extends Entity with HasGameRef {
     super.behaviors,
   }) : super(size: Vector2.all(32));
 
-  SpriteAnimation? _animation;
-
   @visibleForTesting
   SpriteAnimation get animation => _animation!;
+
+  bool isAnimationPlaying() => !animation.isFirstFrame;
 
   @override
   Future<void> onLoad() async {
@@ -41,21 +43,18 @@ class Unicorn extends Entity with HasGameRef {
     resetAnimation();
     animation.onComplete = resetAnimation;
 
-    await add(SpriteAnimationComponent(animation: _animation, size: size));
+    await add(SpriteAnimationComponent(
+      animation: _animation,
+      size: size,
+    ));
   }
 
-  /// Set the animation to the first frame by tricking the animation
-  /// into thinking it finished the last frame.
+  void playAnimation() => animation.reset();
+
   void resetAnimation() {
     animation
       ..currentIndex = _animation!.frames.length - 1
       ..update(0.1)
       ..currentIndex = 0;
   }
-
-  /// Plays the animation.
-  void playAnimation() => animation.reset();
-
-  /// Returns whether the animation is playing or not.
-  bool isAnimationPlaying() => !animation.isFirstFrame;
 }
